@@ -16,19 +16,18 @@ import PersonIcon from '@mui/icons-material/Person';
 import * as yup from 'yup';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { useNavigate } from 'react-router-dom';
 // import { registerUsers } from '../api/apirequests';
 import { useFormik } from 'formik';
 import { userSignUp } from '../redux/actionsCreators/userSignUpActions';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 // import IconButton from '@mui/material/IconButton';
 const logo = require('../assets/profena.png');
 
 const Signup = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.userReducer);
-  if (user.data.length) {
-    console.log(user.data);
-  }
+  
 
   const [isTrue, setIsTrue] = useState(true);
   useEffect(() => {
@@ -57,8 +56,9 @@ const Signup = () => {
     dateOfBirth: '',
   };
 
-  const onSubmit = (values) => {
-    dispatch(userSignUp(values));
+  const onSubmit = (values, {resetForm}) => {
+    dispatch(userSignUp(values, navigate));
+    resetForm()
   };
 
   const formik = useFormik({
@@ -138,7 +138,7 @@ const Signup = () => {
                   label='Name'
                   name='name'
                   type='text'
-                  value={formik.values.names}
+                  value={formik.values.name}
                   onChange={formik.handleChange}
                   error={formik.touched.name && Boolean(formik.errors.name)}
                   helperText={formik.touched.name && formik.errors.name}
