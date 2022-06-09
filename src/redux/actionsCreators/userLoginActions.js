@@ -11,17 +11,43 @@ const instance = axios.create({
   withCredentials: true,
 });
 
-export const userLogin = (formData, navigate) => {
+export const userLogin = (
+  formData,
+  navigate,
+  setFieldError,
+  setSubmitting,
+  setIsLoading
+) => {
   console.log(formData);
   return async (dispatch) => {
     dispatch(loginRequest());
+    setIsLoading(true);
     await instance
       .post('http://localhost:5000/users/signin', formData)
       .then((response) => {
+        setIsLoading(false);
         const { data } = response;
-        dispatch(loginSuccess(data));
-        window.localStorage.setItem('user', JSON.stringify(data.data));
-        navigate('/dashboard')
+        if (data.status === 'FAILED') {
+          const { message } = data;
+          console.log(message);
+          //check for the exact error
+          if (message.includes('credentials')) {
+            setFieldError('email', message);
+            setIsLoading(false);
+            setFieldError('password', message);
+          } else if (message.includes('password')) {
+            setFieldError('password', message);
+            setIsLoading(false);
+          } else {
+            setFieldError('email', 'check your network settings');
+            setFieldError('password', 'check your network settings');
+          }
+        } else if (data.status === 'SUCCESS') {
+          dispatch(loginSuccess(data));
+          window.localStorage.setItem('user', JSON.stringify(data.data));
+          navigate('/dashboard');
+        }
+        setSubmitting(false);
       })
       .catch((error) => {
         dispatch(loginFailed(error));

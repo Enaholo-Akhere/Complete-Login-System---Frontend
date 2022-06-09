@@ -5,12 +5,9 @@ import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button'
 import { Paper } from '@mui/material';
 import { useNavigate } from 'react-router-dom'; 
-import { useSelector } from 'react-redux';
 
 
 const Dashboard = () => {
-  const data = useSelector((state) => state.user)
-  const {success} = data;
   const user = JSON.parse(window.localStorage.getItem('user'))
   const navigate = useNavigate();
   const handleLogOut = () => {
@@ -25,7 +22,7 @@ const Dashboard = () => {
       height: '100vh',
       width: '100vw',
     }}>
-      {success && 
+      
        <Box sx={{
         backgroundColor: 'rgba(0,0,0, 0.5)',
         width: '100vw',
@@ -46,7 +43,7 @@ const Dashboard = () => {
           </Paper>
         </Grid>
       </Grid>
-      </Box>}
+      </Box>
     </Box>
   )
 }

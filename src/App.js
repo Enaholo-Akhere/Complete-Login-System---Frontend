@@ -12,7 +12,6 @@ const App = () => {
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Home />} />
-
           
           <Route element={<ProtectedRouted />}>
             <Route path='/dashboard' element={<Dashboard />} />
