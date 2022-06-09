@@ -16,7 +16,7 @@ import * as yup from 'yup';
 import { useFormik } from 'formik';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { userLogin } from '../redux/actionsCreators/userLoginActions';
 import { useNavigate } from 'react-router-dom';
 import PropagateLoader from 'react-spinners/PropagateLoader';
@@ -24,8 +24,8 @@ import PropagateLoader from 'react-spinners/PropagateLoader';
 const logo = require('../assets/profena.png');
 
 const Signin = () => {
-  const data = useSelector((state) => state.user);
-  const { loading } = data;
+  const [loading, setIsLoading] = useState(false);
+  console.log(loading);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [isTrue, setIsTrue] = useState(true);
@@ -47,9 +47,10 @@ const Signin = () => {
     password: '',
   };
 
-  const onSubmit = (values, { resetForm }) => {
-    dispatch(userLogin(values, navigate));
-    resetForm();
+  const onSubmit = (values, { setFieldError, setSubmitting }) => {
+    dispatch(
+      userLogin(values, navigate, setFieldError, setSubmitting, setIsLoading)
+    );
   };
 
   const formik = useFormik({
@@ -183,19 +184,21 @@ const Signin = () => {
                 />
               </Grid>
               <Grid item xs={3} margin={'auto'}>
-                {!loading && <Button
-                  variant='contained'
-                  backgroundColor='primary'
-                  sx={{ width: 'fit-content' }}
-                  type='submit'
-                >
-                Login
-                </Button>}
-                {loading && <PropagateLoader color={'red'} loading={loading} size={10} />}
+                {!loading ? (
+                  <Button
+                    variant='contained'
+                    backgroundColor='primary'
+                    sx={{ width: 'fit-content' }}
+                    type='submit'
+                  >
+                    Login
+                  </Button>
+                ) : (
+                  <PropagateLoader color={'red'} loading={loading} size={20} />
+                )}
               </Grid>
-              <Grid item xs={12} marginX={'auto'} marginY={2}>
+              <Grid item xs={12} marginX={'auto'} marginY={!loading ? 2 : 4}>
                 <Typography variant='p' color='black'>
-                  {' '}
                   New here?{' '}
                   <Link href='/signup' sx={{ textDecoration: 'none' }}>
                     Signup

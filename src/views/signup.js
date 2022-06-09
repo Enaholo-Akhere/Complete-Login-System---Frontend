@@ -21,15 +21,16 @@ import { useNavigate } from 'react-router-dom';
 import { useFormik } from 'formik';
 import { userSignUp } from '../redux/actionsCreators/userSignUpActions';
 import { useDispatch } from 'react-redux';
+import PropagateLoader from 'react-spinners/PropagateLoader';
 // import IconButton from '@mui/material/IconButton';
 const logo = require('../assets/profena.png');
 
 const Signup = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  
 
   const [isTrue, setIsTrue] = useState(true);
+  const [loading, setIsLoading] = useState(false);
   useEffect(() => {
     AOS.init();
     AOS.refresh();
@@ -56,9 +57,10 @@ const Signup = () => {
     dateOfBirth: '',
   };
 
-  const onSubmit = (values, {resetForm}) => {
-    dispatch(userSignUp(values, navigate));
-    resetForm()
+  const onSubmit = (values, { setFieldError, setSubmitting }) => {
+    dispatch(
+      userSignUp(values, navigate, setFieldError, setSubmitting, setIsLoading)
+    );
   };
 
   const formik = useFormik({
@@ -232,18 +234,22 @@ const Signup = () => {
                 />
               </Grid>
               <Grid item xs={3} margin={'auto'}>
-                <Button
-                  variant='contained'
-                  backgroundColor='primary'
-                  sx={{ width: 'fit-content' }}
-                  type='submit'
-                >
-                  Signin
-                </Button>
+                {!loading && (
+                  <Button
+                    variant='contained'
+                    backgroundColor='primary'
+                    sx={{ width: 'fit-content' }}
+                    type='submit'
+                  >
+                    Signin
+                  </Button>
+                )}
+                {loading && (
+                  <PropagateLoader color={'red'} loading={loading} size={20} />
+                )}
               </Grid>
-              <Grid item xs={12} marginX={'auto'} marginY={2}>
+              <Grid item xs={12} marginX={'auto'} marginY={!loading ? 4 : 4}>
                 <Typography variant='p' color='black'>
-                  {' '}
                   Have an account?{' '}
                   <Link href='/signin' sx={{ textDecoration: 'none' }}>
                     Sign in
