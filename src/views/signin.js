@@ -29,6 +29,8 @@ const Signin = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [isTrue, setIsTrue] = useState(true);
+  const userEmail = JSON.parse(window.localStorage.getItem('userEmail'));
+
   useEffect(() => {
     AOS.init();
     AOS.refresh();
@@ -41,9 +43,8 @@ const Signin = () => {
       .max(20, 'password length cannot be more than 20')
       .required(),
   });
-
   const initialValues = {
-    email: '',
+    email: userEmail ? userEmail : '',
     password: '',
   };
 

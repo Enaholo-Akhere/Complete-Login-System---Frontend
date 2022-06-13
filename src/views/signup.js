@@ -22,6 +22,8 @@ import { useFormik } from 'formik';
 import { userSignUp } from '../redux/actionsCreators/userSignUpActions';
 import { useDispatch } from 'react-redux';
 import PropagateLoader from 'react-spinners/PropagateLoader';
+import ProceedModal from '../component/ProceedModal';
+import Modal from '../component/Modal';
 // import IconButton from '@mui/material/IconButton';
 const logo = require('../assets/profena.png');
 
@@ -68,7 +70,7 @@ const Signup = () => {
     validationSchema,
     onSubmit,
   });
-
+  const userEmail = window.localStorage.getItem('userEmail');
   return (
     <Box
       sx={{
@@ -87,6 +89,10 @@ const Signup = () => {
           alignContent: 'center',
         }}
       >
+        <Modal userEmail={userEmail}>
+          <ProceedModal />
+        </Modal>
+
         <form onSubmit={formik.handleSubmit}>
           <Grid
             container

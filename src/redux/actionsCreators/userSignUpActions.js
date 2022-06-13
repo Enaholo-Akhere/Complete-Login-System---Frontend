@@ -23,6 +23,7 @@ export const userSignUp = (
     await instance
       .post('http://localhost:5000/users/signup', formData)
       .then(({ data: respData }) => {
+        console.log(respData);
         if (respData.status === 'FAILED') {
           const { message } = respData;
           if (message.toLowerCase().includes('email')) {
@@ -37,19 +38,19 @@ export const userSignUp = (
           } else if (message.toLowerCase().includes('password')) {
             setFieldError('password', message);
             setIsLoading(false);
-          }else if(message.toLowerCase().includes('checking for existing user')){
+          } else if (
+            message.toLowerCase().includes('checking for existing user')
+          ) {
             setFieldError('email', message);
             setFieldError('name', message);
             setFieldError('password', message);
-            setFieldError('dateOfBirth', message)
+            setFieldError('dateOfBirth', message);
             setIsLoading(false);
           }
-        } else if (respData.status === 'SUCCESS') {
-          const { data } = respData;
-          console.log(data);
-          dispatch(signupSuccess(data));
-          window.localStorage.setItem('user', JSON.stringify(data));
-          navigate('/dashboard');
+        } else if (respData.status === 'PENDING') {
+          const { email } = respData;
+          console.log(email);
+          window.localStorage.setItem('userEmail', JSON.stringify(email));
           setIsLoading(false);
         }
         setSubmitting(false);
