@@ -38,7 +38,7 @@ const Dashboard = () => {
               fontWeight: 600,
             }}>Welcome, {user.name}</Typography>
             <Typography variant='h5' color="white" sx={{textAlign: 'center', fontWeight: 400, marginY: 2}}>{user.email}</Typography>
-            <Typography variant='h5' color="white" sx={{textAlign: 'center', fontWeight: 400, marginY: 2}}>{user.dateOfBirth}</Typography>
+            <Typography variant='h5' color="white" sx={{textAlign: 'center', fontWeight: 400, marginY: 2}}>{new Date(user.dateOfBirth).toLocaleDateString()}</Typography>
             <Button variant="contained" backgroundColor="primary" sx={{width: 'fit-content', alignSelf: 'center', marginY: 2}} onClick = {handleLogOut} >Logout</Button>
           </Paper>
         </Grid>
