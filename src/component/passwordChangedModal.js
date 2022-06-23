@@ -5,15 +5,9 @@ import Button from '@mui/material/Button';
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 import { useNavigate } from 'react-router-dom';
 
-const ProceedModal = () => {
-  const userEmail = JSON.parse(window.localStorage.getItem('userEmail'));
-  console.log(userEmail);
+const PasswordChangedModal = () => {
   const navigate = useNavigate();
-  const handleClick = () => {
-    navigate('/signin');
-    window.localStorage.setItem('email', userEmail)
-    window.localStorage.removeItem('userEmail')
-  };
+
   return (
     <>
       <Box
@@ -28,19 +22,18 @@ const ProceedModal = () => {
         }}
       >
         <Typography variant='h3' textAlign={'center'}>
-          Account Confirmation
+          Password Reset Successful
         </Typography>
         <Typography variant='body1' textAlign={'center'}>
-          A verification email has been sent to
+          Your password has been successfully changed.
           <Typography variant='h3' sx={{ fontWeight: 700, fontSize: 20 }}>
-            {userEmail}
+            Account is secured
           </Typography>
-          Please verify and click proceed
         </Typography>
         <Button
           variant='contained'
           endIcon={<ArrowRightAltIcon />}
-          onClick={handleClick}
+          onClick={() => navigate('/signin')}
           sx={{
             marginTop: 3,
             fontSize: 20,
@@ -54,4 +47,4 @@ const ProceedModal = () => {
   );
 };
 
-export default ProceedModal;
+export default PasswordChangedModal;

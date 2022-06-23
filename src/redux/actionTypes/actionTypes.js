@@ -1,5 +1,6 @@
 import * as constants from '../constants/userconstants';
 
+//SIGNUP REQUEST
 export const signupRequest = () => {
   return {
     type: constants.REQUEST_SIGNUP_LOADING,
@@ -20,6 +21,7 @@ export const signupFailed = (failed) => {
   };
 };
 
+//LOGIN REQUEST
 export const loginRequest = () => {
   return {
     type: constants.REQUEST_LOGIN_LOADING,
@@ -37,5 +39,48 @@ export const loginFailed = (failed) => {
   return {
     type: constants.REQUEST_LOGIN_FAILURE,
     payload: failed,
+  };
+};
+
+//FORGOTPASSWORD REQUEST
+export const forgotPasswordRequest = () => {
+  return {
+    type: constants.REQUEST_FORGOTPASSWORD_LOADING,
+  };
+};
+
+export const forgotPasswordSuccess = (data) => {
+  return {
+    type: constants.REQUEST_FORGOTPASSWORD_SUCCESS,
+    payload: data,
+  };
+};
+
+export const forgotPasswordFailure = (error) => {
+  return {
+    type: constants.REQUEST_FORGOTPASSWORD_FAILURE,
+    payload: error,
+  };
+};
+
+
+//reset password
+export const resetPasswordRequest = () => {
+  return {
+    type: constants.REQUEST_RESETPASSWORD_LOADING,
+  };
+};
+
+export const resetPasswordSuccess = (data) => {
+  return {
+    type: constants.REQUEST_RESETPASSWORD_SUCCESS,
+    payload: data,
+  };
+};
+
+export const resetPasswordFailure = (error) => {
+  return {
+    type: constants.REQUEST_RESETPASSWORD_FAILURE,
+    payload: error,
   };
 };

@@ -5,14 +5,14 @@ import Button from '@mui/material/Button';
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 import { useNavigate } from 'react-router-dom';
 
-const ProceedModal = () => {
-  const userEmail = JSON.parse(window.localStorage.getItem('userEmail'));
-  console.log(userEmail);
+const EmailSent = () => {
+  const resetEmail = window.localStorage.getItem('resetEmail');
+  console.log(resetEmail);
   const navigate = useNavigate();
   const handleClick = () => {
     navigate('/signin');
-    window.localStorage.setItem('email', userEmail)
-    window.localStorage.removeItem('userEmail')
+    window.localStorage.setItem('email', resetEmail)
+    window.localStorage.removeItem('resetEmail')
   };
   return (
     <>
@@ -28,14 +28,14 @@ const ProceedModal = () => {
         }}
       >
         <Typography variant='h3' textAlign={'center'}>
-          Account Confirmation
+          Password Reset
         </Typography>
         <Typography variant='body1' textAlign={'center'}>
-          A verification email has been sent to
+          Reset link sent to this email
           <Typography variant='h3' sx={{ fontWeight: 700, fontSize: 20 }}>
-            {userEmail}
+            {resetEmail}
           </Typography>
-          Please verify and click proceed
+          It will expire in 60 minutes
         </Typography>
         <Button
           variant='contained'
@@ -47,11 +47,11 @@ const ProceedModal = () => {
             fontWeight: 700,
           }}
         >
-          Proceed
+          Home
         </Button>
       </Box>
     </>
   );
 };
 
-export default ProceedModal;
+export default EmailSent;

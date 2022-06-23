@@ -4,19 +4,22 @@ import {
   signupSuccess,
   signupFailed,
 } from '../actionTypes/actionTypes';
+import { turnModalOn } from './modalTurnOnActions';
 //create axios instance
 const instance = axios.create({
   baseURL: 'http://localhost:3000',
   withCredentials: true,
 });
 
+
 export const userSignUp = (
   formData,
   navigate,
   setFieldError,
   setSubmitting,
-  setIsLoading
+  setIsLoading,
 ) => {
+
   return async (dispatch) => {
     dispatch(signupRequest());
     setIsLoading(true);
@@ -50,6 +53,8 @@ export const userSignUp = (
         } else if (respData.status === 'PENDING') {
           const { email } = respData;
           console.log(email);
+          dispatch(turnModalOn(true))
+          dispatch(signupSuccess());
           window.localStorage.setItem('userEmail', JSON.stringify(email));
           setIsLoading(false);
         }

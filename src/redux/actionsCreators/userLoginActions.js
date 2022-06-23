@@ -45,6 +45,7 @@ export const userLogin = (
         } else if (data.status === 'SUCCESS') {
           dispatch(loginSuccess(data));
           window.localStorage.setItem('user', JSON.stringify(data.data));
+          window.localStorage.removeItem('email')
           navigate('/dashboard');
         }
         setSubmitting(false);
