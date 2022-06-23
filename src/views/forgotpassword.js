@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
@@ -8,27 +7,24 @@ import Paper from '@mui/material/Paper';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import InputAdornment from '@mui/material/InputAdornment';
 import EmailIcon from '@mui/icons-material/Email';
-import VisibilityIcon from '@mui/icons-material/Visibility';
-import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import LockIcon from '@mui/icons-material/Lock';
-import { Link } from '@mui/material';
 import * as yup from 'yup';
 import { useFormik } from 'formik';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { useDispatch } from 'react-redux';
-import { userLogin } from '../redux/actionsCreators/userLoginActions';
 import { useNavigate } from 'react-router-dom';
+import { forgotPasswordAction } from '../redux/actionsCreators/forgotPasswordActionCreator';
 import PropagateLoader from 'react-spinners/PropagateLoader';
+import Modal from '../component/Modal';
+import EmailSent from '../component/emailSentModal';
 // import IconButton from '@mui/material/IconButton';
 const logo = require('../assets/profena.png');
 
-const Signin = () => {
+const ForgotPassword = () => {
   const [loading, setIsLoading] = useState(false);
+  console.log(loading);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [isTrue, setIsTrue] = useState(true);
-  const email = window.localStorage.getItem('email');
 
   useEffect(() => {
     AOS.init();
@@ -36,20 +32,21 @@ const Signin = () => {
   }, []);
   const validationSchema = yup.object({
     email: yup.string().email('please provide a valid email').required(),
-    password: yup
-      .string()
-      .min(8, 'minimum required length is 8')
-      .max(20, 'password length cannot be more than 20')
-      .required(),
   });
   const initialValues = {
-    email: email === 'null' ? '' : email,
-    password: '',
+    email: '',
+    redirectUrl: 'resetpassword',
   };
 
   const onSubmit = (values, { setFieldError, setSubmitting }) => {
     dispatch(
-      userLogin(values, navigate, setFieldError, setSubmitting, setIsLoading)
+      forgotPasswordAction(
+        values,
+        navigate,
+        setFieldError,
+        setSubmitting,
+        setIsLoading
+      )
     );
   };
 
@@ -77,6 +74,9 @@ const Signin = () => {
           alignContent: 'center',
         }}
       >
+        <Modal>
+          <EmailSent />
+        </Modal>
         <form onSubmit={formik.handleSubmit}>
           <Grid
             container
@@ -146,76 +146,20 @@ const Signin = () => {
                   }}
                 />
               </Grid>
-              <Grid item xs={12} sx={{ marginTop: 2, marginBottom: 1 }}>
-                <TextField
-                  fullWidth
-                  id='password'
-                  variant='outlined'
-                  label='Password'
-                  name='password'
-                  value={formik.values.password}
-                  onChange={formik.handleChange}
-                  error={
-                    formik.touched.password && Boolean(formik.errors.password)
-                  }
-                  helperText={formik.touched.password && formik.errors.password}
-                  type={isTrue ? 'password' : 'text'}
-                  placeholder='********'
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position='start'>
-                        <LockIcon />
-                      </InputAdornment>
-                    ),
-                    endAdornment: (
-                      <InputAdornment position='end'>
-                        {isTrue ? (
-                          <VisibilityOffIcon
-                            sx={{ cursor: 'pointer' }}
-                            onClick={() => {
-                              setIsTrue((prev) => !prev);
-                              window.localStorage.removeItem('email');
-                            }}
-                          />
-                        ) : (
-                          <VisibilityIcon
-                            onClick={() => setIsTrue((prev) => !prev)}
-                            sx={{ cursor: 'pointer' }}
-                          />
-                        )}
-                      </InputAdornment>
-                    ),
-                  }}
-                />
-              </Grid>
-              <Grid item xs={12} marginX={0} marginBottom={1}>
-                <Typography variant='p' color='black'>
-                  <Link href='/forgotpassword' sx={{ textDecoration: 'none' }}>
-                    Forgot password
-                  </Link>
-                </Typography>
-              </Grid>
-              <Grid item xs={3} margin={'auto'}>
+              <Grid item xs={12} margin={'auto'} marginY={2}>
                 {!loading ? (
                   <Button
                     variant='contained'
                     backgroundColor='primary'
                     sx={{ width: 'fit-content' }}
                     type='submit'
+                    fullWidth
                   >
-                    Login
+                    Submit
                   </Button>
                 ) : (
                   <PropagateLoader color={'red'} loading={loading} size={20} />
                 )}
-              </Grid>
-              <Grid item xs={12} marginX={'auto'} marginY={!loading ? 2 : 4}>
-                <Typography variant='p' color='black'>
-                  New here?{' '}
-                  <Link href='/signup' sx={{ textDecoration: 'none' }}>
-                    Signup
-                  </Link>
-                </Typography>
               </Grid>
             </Paper>
           </Grid>
@@ -225,4 +169,4 @@ const Signin = () => {
   );
 };
 
-export default Signin;
+export default ForgotPassword;
