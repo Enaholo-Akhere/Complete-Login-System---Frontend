@@ -7,12 +7,11 @@ import { useNavigate } from 'react-router-dom';
 
 const EmailSent = () => {
   const resetEmail = window.localStorage.getItem('resetEmail');
-  console.log(resetEmail);
   const navigate = useNavigate();
   const handleClick = () => {
     navigate('/signin');
-    window.localStorage.setItem('email', resetEmail)
-    window.localStorage.removeItem('resetEmail')
+    window.localStorage.setItem('email', resetEmail);
+    window.localStorage.removeItem('resetEmail');
   };
   return (
     <>
@@ -31,7 +30,7 @@ const EmailSent = () => {
           Password Reset
         </Typography>
         <Typography variant='body1' textAlign={'center'}>
-          Reset link sent to this email
+          Reset link sent to
           <Typography variant='h3' sx={{ fontWeight: 700, fontSize: 20 }}>
             {resetEmail}
           </Typography>

@@ -22,7 +22,6 @@ const logo = require('../assets/profena.png');
 
 const ForgotPassword = () => {
   const [loading, setIsLoading] = useState(false);
-  console.log(loading);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 

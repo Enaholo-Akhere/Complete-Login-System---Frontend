@@ -1,15 +1,11 @@
-import axios from 'axios';
+import * as api from '../../api/apirequests';
 import {
   loginRequest,
   loginSuccess,
   loginFailed,
 } from '../actionTypes/actionTypes';
 
-//create axios instance
-const instance = axios.create({
-  baseURL: 'http://localhost:3000',
-  withCredentials: true,
-});
+
 
 export const userLogin = (
   formData,
@@ -18,18 +14,16 @@ export const userLogin = (
   setSubmitting,
   setIsLoading
 ) => {
-  console.log(formData);
   return async (dispatch) => {
     dispatch(loginRequest());
     setIsLoading(true);
-    await instance
-      .post('http://localhost:5000/users/signin', formData)
+    await api
+      .loginUsers(formData)
       .then((response) => {
         setIsLoading(false);
         const { data } = response;
         if (data.status === 'FAILED') {
           const { message } = data;
-          console.log(message);
           //check for the exact error
           if (message.includes('credentials')) {
             setFieldError('email', message);
@@ -45,7 +39,7 @@ export const userLogin = (
         } else if (data.status === 'SUCCESS') {
           dispatch(loginSuccess(data));
           window.localStorage.setItem('user', JSON.stringify(data.data));
-          window.localStorage.removeItem('email')
+          window.localStorage.removeItem('email');
           navigate('/dashboard');
         }
         setSubmitting(false);

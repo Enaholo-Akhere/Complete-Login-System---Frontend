@@ -190,7 +190,10 @@ const Signin = () => {
               </Grid>
               <Grid item xs={12} marginX={0} marginBottom={1}>
                 <Typography variant='p' color='black'>
-                  <Link href='/forgotpassword' sx={{ textDecoration: 'none' }}>
+                  <Link
+                    href='/forgotpassword'
+                    sx={{ textDecoration: 'none', fontSize: 13 }}
+                  >
                     Forgot password
                   </Link>
                 </Typography>
