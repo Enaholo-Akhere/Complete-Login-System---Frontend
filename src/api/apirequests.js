@@ -12,7 +12,11 @@ const baseUrl =
     : process.env.REACT_APP_BASE_URL_DEV;
 
 export const registerUsers = async (formData) => {
-  return await instance.post(`${baseUrl}/users/signup`, formData);
+  return await instance.post(`${baseUrl}/users/signup`, formData, {
+    headers: {
+      'content-type': 'application/json',
+    },
+  });
 };
 
 export const loginUsers = async (formData) => {
