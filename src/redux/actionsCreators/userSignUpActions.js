@@ -1,4 +1,5 @@
-import axios from 'axios';
+//import axios from 'axios';
+import * as api from '../../api/apirequests';
 import {
   signupRequest,
   signupSuccess,
@@ -6,27 +7,24 @@ import {
 } from '../actionTypes/actionTypes';
 import { turnModalOn } from './modalTurnOnActions';
 //create axios instance
-const instance = axios.create({
-  baseURL: 'http://localhost:3000',
-  withCredentials: true,
-});
-
+// const instance = axios.create({
+//   baseURL: 'http://localhost:3000',
+//   withCredentials: true,
+// });
 
 export const userSignUp = (
   formData,
   navigate,
   setFieldError,
   setSubmitting,
-  setIsLoading,
+  setIsLoading
 ) => {
-
   return async (dispatch) => {
     dispatch(signupRequest());
     setIsLoading(true);
-    await instance
-      .post('http://localhost:5000/users/signup', formData)
+    await api
+      .registerUsers(formData)
       .then(({ data: respData }) => {
-        console.log(respData);
         if (respData.status === 'FAILED') {
           const { message } = respData;
           if (message.toLowerCase().includes('email')) {
@@ -52,8 +50,7 @@ export const userSignUp = (
           }
         } else if (respData.status === 'PENDING') {
           const { email } = respData;
-          console.log(email);
-          dispatch(turnModalOn(true))
+          dispatch(turnModalOn(true));
           dispatch(signupSuccess());
           window.localStorage.setItem('userEmail', JSON.stringify(email));
           setIsLoading(false);
@@ -61,7 +58,6 @@ export const userSignUp = (
         setSubmitting(false);
       })
       .catch((error) => {
-        console.log(error);
         dispatch(signupFailed(error));
         setIsLoading(false);
       });
