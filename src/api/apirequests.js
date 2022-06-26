@@ -10,7 +10,7 @@ const baseUrl = process.env.REACT_APP_BASE_URL_PROD;
 
 //register new users
 export const registerUsers = async (formData) => {
-  return await instance.post(`${baseUrl}/users/signup`, formData, {
+  return await axios.post(`https://safe-spire-06397.herokuapp.com/users/signup`, formData, {
     withCredentials: true,
   });
 };
