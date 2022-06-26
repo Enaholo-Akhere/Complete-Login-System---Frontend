@@ -6,16 +6,15 @@ const instance = axios.create({
   withCredentials: true,
 });
 
-const baseUrl = process.env.REACT_APP_BASE_URL_PROD;
+const baseUrl =
+  process.env.NODE_ENV === 'production'
+    ? process.env.REACT_APP_BASE_URL_PROD
+    : process.env.REACT_APP_BASE_URL_DEV;
 
-//register new users
 export const registerUsers = async (formData) => {
-  return await axios.post(`https://safe-spire-06397.herokuapp.com/users/signup`, formData, {
-    withCredentials: true,
-  });
+  return await instance.post(`${baseUrl}/users/signup`, formData);
 };
 
-//log users in
 export const loginUsers = async (formData) => {
   return await instance.post(`${baseUrl}/users/signin`, formData);
 };
