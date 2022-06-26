@@ -6,10 +6,7 @@ const instance = axios.create({
   withCredentials: true,
 });
 
-const baseUrl =
-  process.env.NODE_ENV === 'production'
-    ? process.env.REACT_APP_BASE_URL_PROD
-    : process.env.REACT_APP_BASE_URL_DEV;
+const baseUrl = process.env.REACT_APP_BASE_URL_PROD;
 
 //register new users
 export const registerUsers = async (formData) => {
