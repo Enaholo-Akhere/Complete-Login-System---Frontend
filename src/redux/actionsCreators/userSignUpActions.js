@@ -1,4 +1,3 @@
-//import axios from 'axios';
 import * as api from '../../api/apirequests';
 import {
   signupRequest,
@@ -6,11 +5,6 @@ import {
   signupFailed,
 } from '../actionTypes/actionTypes';
 import { turnModalOn } from './modalTurnOnActions';
-//create axios instance
-// const instance = axios.create({
-//   baseURL: 'http://localhost:3000',
-//   withCredentials: true,
-// });
 
 export const userSignUp = (
   formData,

@@ -20,7 +20,6 @@ import { useDispatch } from 'react-redux';
 import { userLogin } from '../redux/actionsCreators/userLoginActions';
 import { useNavigate } from 'react-router-dom';
 import PropagateLoader from 'react-spinners/PropagateLoader';
-// import IconButton from '@mui/material/IconButton';
 const logo = require('../assets/profena.png');
 
 const Signin = () => {
