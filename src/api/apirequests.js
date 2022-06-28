@@ -11,7 +11,7 @@ const instance = axios.create({
 //     ? process.env.REACT_APP_BASE_URL_PROD
 //     : process.env.REACT_APP_BASE_URL_DEV;
 
-const baseUrl = 'https://safe-spire-06397.herokuapp.com'
+const baseUrl = process.env.REACT_APP_BASE_URL_PROD
 
 export const registerUsers = async (formData) => {
   return await instance.post(`${baseUrl}/users/signup`, formData, {
