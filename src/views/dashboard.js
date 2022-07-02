@@ -5,6 +5,9 @@ import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import { Paper } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+const logo = require('../assets/profena.png');
+
 
 const Dashboard = () => {
   const user = JSON.parse(window.localStorage.getItem('user'));
@@ -51,7 +54,30 @@ const Dashboard = () => {
                 flexDirection: 'column',
                 justifyContent: 'center',
               }}
-            >
+            ><Box
+            component={'a'}
+            href={'/'}
+            sx={{
+              maxHeight: 100,
+              maxWidth: 100,
+              display: 'flex',
+              justifyContent: 'center',
+              margin: 'auto',
+              marginBottom: 10,
+            }}
+          >
+            <Box
+              component={LazyLoadImage}
+              src={logo}
+              sx={{
+                width: 1,
+                height: 1,
+                display: 'flex',
+                justifyContent: 'center',
+                margin: 'auto',
+              }}
+            />
+          </Box>
               <Typography
                 variant='h2'
                 sx={{
