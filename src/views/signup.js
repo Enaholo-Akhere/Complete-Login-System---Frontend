@@ -248,7 +248,7 @@ const Signup = () => {
                     sx={{ width: 'fit-content' }}
                     type='submit'
                   >
-                    Signin
+                    Signup
                   </Button>
                 )}
                 {loading && (

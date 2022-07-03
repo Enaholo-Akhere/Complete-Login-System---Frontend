@@ -1,4 +1,3 @@
-import Box from '@mui/material/Box';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import Dashboard from './views/dashboard';
 import Home from './views/home';
@@ -10,7 +9,7 @@ import RedirectTo from './component/RedirectTo';
 import ResetPassword from './views/resetPassword';
 const App = () => {
   return (
-    <Box>
+    
       <BrowserRouter>
       
         <Routes>
@@ -30,7 +29,7 @@ const App = () => {
           </Route>
         </Routes>
       </BrowserRouter>
-    </Box>
+    
   );
 };
 

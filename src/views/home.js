@@ -11,12 +11,14 @@ const logo = require('../assets/profena.png');
 const Home = () => {
   return (
     <Box
+      overflow='hidden'
       sx={{
         backgroundImage:
           'url(https://images.pexels.com/photos/960137/pexels-photo-960137.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2)',
         background: 'cover no-repeat',
         height: '100vh',
-        width: '100vw',
+        width: '100%',
+        margin: 'auto',
       }}
     >
       <Box
@@ -25,6 +27,7 @@ const Home = () => {
           width: '100vw',
           height: '100vh',
           alignContent: 'center',
+          margin: 'auto',
         }}
       >
         <Grid
@@ -33,7 +36,7 @@ const Home = () => {
           justifyContent={'center'}
           alignContent={'center'}
           spacing={0}
-          sx={{ minHeight: '100vh' }}
+          sx={{ minHeight: '100%' }}
         >
           <Grid item xs={3}>
             <Paper
@@ -45,6 +48,8 @@ const Home = () => {
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'center',
+                width: '80%',
+                marginX: '10%',
               }}
             >
               <Box
@@ -75,6 +80,14 @@ const Home = () => {
                 variant='h2'
                 sx={{
                   fontWeight: 600,
+                  textAlign: 'center',
+                  fontSize: {
+                    xl: '3.75rem',
+                    lg: '3.75rem',
+                    md: '2.5rem',
+                    sm: '2.5rem',
+                    xs: '2.5rem',
+                  },
                 }}
               >
                 Welcome to Ena's Tech Savvy
@@ -82,7 +95,17 @@ const Home = () => {
               <Typography
                 variant='h5'
                 color='white'
-                sx={{ textAlign: 'center', fontWeight: 400, marginY: 2 }}
+                sx={{
+                  textAlign: 'center',
+                  fontWeight: 400,
+                  marginY: 2,fontSize: {
+                    xl: '1.5rem',
+                    lg: '1.5rem',
+                    md: '1.0rem',
+                    sm: '1.0rem',
+                    xs: '1.0rem',
+                  },
+                }}
               >
                 Feel free to navigate round this website
               </Typography>
