@@ -36,7 +36,13 @@ const Home = () => {
           justifyContent={'center'}
           alignContent={'center'}
           spacing={0}
-          sx={{ minHeight: '100%', margin: 'auto' }}
+          sx={{
+            position: 'fixed',
+            top: '50%',
+            left: '50%',
+            zIndex: 1000,
+            transform: 'translate(-50%, -50%)',
+          }}
         >
           <Grid item xs={3}>
             <Paper
@@ -98,7 +104,8 @@ const Home = () => {
                 sx={{
                   textAlign: 'center',
                   fontWeight: 400,
-                  marginY: 2,fontSize: {
+                  marginY: 2,
+                  fontSize: {
                     xl: '1.5rem',
                     lg: '1.5rem',
                     md: '1.0rem',

@@ -41,7 +41,13 @@ const Dashboard = () => {
           justifyContent={'center'}
           alignContent={'center'}
           spacing={0}
-          sx={{ minHeight: 'fit-content', margin: 'auto' }}
+          sx={{
+            position: 'fixed',
+            top: '50%',
+            left: '50%',
+            zIndex: 1000,
+            transform: 'translate(-50%, -50%)',
+          }}
         >
           <Grid item xs={3}>
             <Paper
