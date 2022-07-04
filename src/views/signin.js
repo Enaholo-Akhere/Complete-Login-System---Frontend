@@ -66,7 +66,7 @@ const Signin = () => {
         background: 'cover no-repeat',
         height: '100%',
         width: '100vw',
-        margin:'auto',
+        margin: 'auto',
       }}
     >
       <Box
@@ -84,7 +84,7 @@ const Signin = () => {
             justifyContent={'center'}
             alignContent={'center'}
             spacing={0}
-            sx={{ minHeight: '100vh' }}
+            sx={{ minHeight: 'fit-content', margin: 'auto' }}
           >
             <Paper
               data-aos='flip-down'

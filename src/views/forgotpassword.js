@@ -84,7 +84,7 @@ const ForgotPassword = () => {
             justifyContent={'center'}
             alignContent={'center'}
             spacing={0}
-            sx={{ minHeight: '100vh' }}
+            sx={{ minHeight: '100%', margin: 'auto' }}
           >
             <Paper
               data-aos='flip-down'

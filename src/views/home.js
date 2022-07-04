@@ -36,7 +36,7 @@ const Home = () => {
           justifyContent={'center'}
           alignContent={'center'}
           spacing={0}
-          sx={{ minHeight: '100%' }}
+          sx={{ minHeight: '100%', margin: 'auto' }}
         >
           <Grid item xs={3}>
             <Paper

@@ -41,7 +41,7 @@ const Dashboard = () => {
           justifyContent={'center'}
           alignContent={'center'}
           spacing={0}
-          sx={{ minHeight: '100vh' }}
+          sx={{ minHeight: 'fit-content', margin: 'auto' }}
         >
           <Grid item xs={3}>
             <Paper
