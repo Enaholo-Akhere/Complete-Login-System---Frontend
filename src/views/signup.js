@@ -112,7 +112,8 @@ const Signup = () => {
               data-aos='flip-up'
               sx={{
                 backgroundColor: 'rgba(256,256,256, 0.9)',
-                padding: { xl: 5, lg: 5, md: 5, sm: 2, xs: 2 },
+                paddingX: 5,
+                paddingY: { xl: 5, lg: 5, md: 5, sm: 3, xs: 3 },
                 color: 'white',
                 fontFamily: 'Roboto, sans-serif',
                 display: 'flex',
@@ -126,12 +127,12 @@ const Signup = () => {
                 component={'a'}
                 href={'/'}
                 sx={{
-                  maxHeight: 100,
-                  maxWidth: 100,
+                  maxHeight: { xl: 100, lg: 100, md: 100, sm: 80, xs: 80 },
+                  maxWidth: { xl: 100, lg: 100, md: 100, sm: 80, xs: 80 },
                   display: 'flex',
                   justifyContent: 'center',
                   margin: 'auto',
-                  marginBottom: 10,
+                  marginBottom: { xl: 10, lg: 10, md: 10, sm: 5, xs: 5 },
                 }}
               >
                 <Box
@@ -262,7 +263,16 @@ const Signup = () => {
                   <PropagateLoader color={'red'} loading={loading} size={20} />
                 )}
               </Grid>
-              <Grid item xs={12} marginX={'auto'} marginY={!loading ? 4 : 4}>
+              <Grid
+                item
+                xs={12}
+                marginX={'auto'}
+                marginY={
+                  !loading
+                    ? { xl: 4, lg: 4, md: 4, sm: 2, xs: 2 }
+                    : { xl: 4, lg: 4, md: 4, sm: 2, xs: 2 }
+                }
+              >
                 <Typography variant='p' color='black'>
                   Have an account?{' '}
                   <Link href='/signin' sx={{ textDecoration: 'none' }}>
