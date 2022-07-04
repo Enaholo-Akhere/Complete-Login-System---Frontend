@@ -89,6 +89,13 @@ const Dashboard = () => {
                 sx={{
                   textTransform: 'capitalize',
                   fontWeight: 600,
+                  fontSize: {
+                    xl: '3.75rem',
+                    lg: '3.75rem',
+                    md: '2.5rem',
+                    sm: '2.5rem',
+                    xs: '2.5rem',
+                  },
                 }}
               >
                 Welcome, {user.name}
