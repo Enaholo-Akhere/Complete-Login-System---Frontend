@@ -112,7 +112,7 @@ const Signup = () => {
               data-aos='flip-up'
               sx={{
                 backgroundColor: 'rgba(256,256,256, 0.9)',
-                padding: 5,
+                padding: { xl: 5, lg: 5, md: 5, sm: 2, xs: 2 },
                 color: 'white',
                 fontFamily: 'Roboto, sans-serif',
                 display: 'flex',
@@ -266,7 +266,7 @@ const Signup = () => {
                 <Typography variant='p' color='black'>
                   Have an account?{' '}
                   <Link href='/signin' sx={{ textDecoration: 'none' }}>
-                    Sign in
+                    Signin
                   </Link>
                 </Typography>
               </Grid>

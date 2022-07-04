@@ -222,7 +222,7 @@ const Signin = () => {
                 <Typography variant='p' color='black'>
                   New here?{' '}
                   <Link href='/signup' sx={{ textDecoration: 'none' }}>
-                    Signup
+                    Register
                   </Link>
                 </Typography>
               </Grid>
