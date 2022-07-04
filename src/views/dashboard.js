@@ -8,7 +8,6 @@ import { useNavigate } from 'react-router-dom';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 const logo = require('../assets/profena.png');
 
-
 const Dashboard = () => {
   const user = JSON.parse(window.localStorage.getItem('user'));
   const navigate = useNavigate();
@@ -23,8 +22,9 @@ const Dashboard = () => {
         backgroundImage:
           'url(https://images.pexels.com/photos/960137/pexels-photo-960137.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2)',
         background: 'cover no-repeat',
-        height: '100vh',
+        height: '100%',
         width: '100vw',
+        margin: 'auto',
       }}
     >
       <Box
@@ -54,30 +54,31 @@ const Dashboard = () => {
                 flexDirection: 'column',
                 justifyContent: 'center',
               }}
-            ><Box
-            component={'a'}
-            href={'/'}
-            sx={{
-              maxHeight: 100,
-              maxWidth: 100,
-              display: 'flex',
-              justifyContent: 'center',
-              margin: 'auto',
-              marginBottom: 10,
-            }}
-          >
-            <Box
-              component={LazyLoadImage}
-              src={logo}
-              sx={{
-                width: 1,
-                height: 1,
-                display: 'flex',
-                justifyContent: 'center',
-                margin: 'auto',
-              }}
-            />
-          </Box>
+            >
+              <Box
+                component={'a'}
+                href={'/'}
+                sx={{
+                  maxHeight: 100,
+                  maxWidth: 100,
+                  display: 'flex',
+                  justifyContent: 'center',
+                  margin: 'auto',
+                  marginBottom: 10,
+                }}
+              >
+                <Box
+                  component={LazyLoadImage}
+                  src={logo}
+                  sx={{
+                    width: 1,
+                    height: 1,
+                    display: 'flex',
+                    justifyContent: 'center',
+                    margin: 'auto',
+                  }}
+                />
+              </Box>
               <Typography
                 variant='h2'
                 sx={{

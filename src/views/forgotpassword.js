@@ -61,8 +61,9 @@ const ForgotPassword = () => {
         backgroundImage:
           'url(https://images.pexels.com/photos/960137/pexels-photo-960137.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2)',
         background: 'cover no-repeat',
-        height: '100vh',
+        height: '100%',
         width: '100vw',
+        margin: 'auto',
       }}
     >
       <Box
