@@ -2,20 +2,18 @@ import React from 'react';
 import ReactDom from 'react-dom';
 import Box from '@mui/material/Box';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  turnModalOff,
-  turnModalOn,
-} from '../redux/actionsCreators/modalTurnOnActions';
+import CloseIcon from '@mui/icons-material/Close';
+import { turnModalOff } from '../redux/actionsCreators/modalTurnOnActions';
 
 const Modal = ({ children }) => {
   const dispatch = useDispatch();
 
   const show = useSelector((state) => state.modal);
-  if (!show) return null;
+  console.log(show);
+  if (show === false) return null;
   return ReactDom.createPortal(
     <>
       <Box
-        onClick={() => dispatch(turnModalOff(false))}
         sx={{
           backgroundColor: 'rgba(0,0,0, 0.7)',
           position: 'fixed',
@@ -23,11 +21,10 @@ const Modal = ({ children }) => {
           bottom: 0,
           left: 0,
           right: 0,
-          zIndex: 10
+          zIndex: 10,
         }}
       >
         <Box
-        onClick={() => dispatch(turnModalOn(true))}
           sx={{
             maxWidth: 900,
             position: 'fixed',
@@ -35,9 +32,23 @@ const Modal = ({ children }) => {
             left: '50%',
             zIndex: 1000,
             transform: 'translate(-50%, -50%)',
-            
           }}
         >
+          <Box
+            onClick={() => dispatch(turnModalOff(false))}
+            sx={{
+              display: 'flex',
+              justifyContent: 'center',
+
+              fontWeight: 600,
+              color: 'white',
+            }}
+          >
+            <CloseIcon
+              onClick={() => dispatch(turnModalOff(false))}
+              sx={{ cursor: 'pointer', marginTop: -10, fontSize: 30}}
+            />
+          </Box>
           {children}
         </Box>
       </Box>

@@ -84,3 +84,24 @@ export const resetPasswordFailure = (error) => {
     payload: error,
   };
 };
+
+//delete account
+export const deleteAccountRequest = () => {
+  return {
+    type: constants.REQUEST_DELETEACCOUNT_LOADING,
+  }
+}
+
+export const deleteAccountSuccess = (data) => {
+  return {
+    type: constants.REQUEST_DELETEACCOUNT_SUCCESS,
+    payload: data
+  }
+}
+
+export const deleteAccountFailure = (error) => {
+  return {
+    type: constants.REQUEST_DELETEACCOUNT_FAILURE,
+    payload: error
+  }
+}

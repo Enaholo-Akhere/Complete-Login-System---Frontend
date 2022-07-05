@@ -13,6 +13,7 @@ const userReducer = (state = initials, action) => {
         case constants.REQUEST_LOGIN_LOADING:
         case constants.REQUEST_FORGOTPASSWORD_LOADING:
         case constants.REQUEST_RESETPASSWORD_LOADING:
+        case constants.REQUEST_DELETEACCOUNT_LOADING:
             return {
                 loading: true,
                 failure: '',
@@ -23,6 +24,7 @@ const userReducer = (state = initials, action) => {
         case constants.REQUEST_LOGIN_SUCCESS:
         case constants.REQUEST_FORGOTPASSWORD_SUCCESS:
         case constants.REQUEST_RESETPASSWORD_SUCCESS:
+        case constants.REQUEST_DELETEACCOUNT_SUCCESS:
             return {
             loading: false,
             failure: "",
@@ -33,6 +35,7 @@ const userReducer = (state = initials, action) => {
         case constants.REQUEST_LOGIN_FAILURE:
         case constants.REQUEST_FORGOTPASSWORD_FAILURE:
         case constants.REQUEST_RESETPASSWORD_FAILURE:
+        case constants.REQUEST_DELETEACCOUNT_FAILURE:
             return {
             loading: false,
             failure: action.payload,

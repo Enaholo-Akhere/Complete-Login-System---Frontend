@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
@@ -6,9 +6,16 @@ import Button from '@mui/material/Button';
 import { Paper } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { turnModalOn } from '../redux/actionsCreators/modalTurnOnActions';
+import { useDispatch } from 'react-redux';
+import Modal from '../component/Modal';
+import ConfirmDeleteModal from '../component/confirmDeleteModal';
+import DeleteAccount from '../component/deleteAccountModal';
 const logo = require('../assets/profena.png');
 
 const Dashboard = () => {
+  const [deleteUser, setDeleteUser] = useState(false)
+  const dispatch = useDispatch()
   const user = JSON.parse(window.localStorage.getItem('user'));
   const navigate = useNavigate();
   const handleLogOut = () => {
@@ -35,6 +42,9 @@ const Dashboard = () => {
           alignContent: 'center',
         }}
       >
+        <Modal>
+         {!deleteUser ? <ConfirmDeleteModal deleteUser={setDeleteUser} /> : <DeleteAccount />} 
+        </Modal>
         <Grid
           container
           direction='column'
@@ -122,6 +132,14 @@ const Dashboard = () => {
                 onClick={handleLogOut}
               >
                 Logout
+              </Button>
+              <Button
+                variant='outlined'
+                backgroundColor='primary'
+                sx={{ width: 'fit-content', alignSelf: 'center', marginY: 5 }}
+                onClick={()=>dispatch(turnModalOn(true))}
+              >
+                Delete Account
               </Button>
             </Paper>
           </Grid>

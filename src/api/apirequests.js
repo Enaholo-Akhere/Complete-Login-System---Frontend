@@ -28,3 +28,9 @@ export const forgotPassword = async (formData) => {
 export const resetPassword = async (formData) => {
   return await instance.post(`${baseUrl}/users/resetpassword`, formData);
 };
+
+//delete account
+export const deleteAccount = async (formData) => {
+  console.log(formData.email)
+  return await instance.delete(`${baseUrl}/users/deleteaccount`, formData)
+}
