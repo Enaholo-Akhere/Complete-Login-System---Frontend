@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
@@ -14,8 +14,8 @@ import DeleteAccount from '../component/deleteAccountModal';
 const logo = require('../assets/profena.png');
 
 const Dashboard = () => {
-  const [deleteUser, setDeleteUser] = useState(false)
-  const dispatch = useDispatch()
+  const [deleteUser, setDeleteUser] = useState(false);
+  const dispatch = useDispatch();
   const user = JSON.parse(window.localStorage.getItem('user'));
   const navigate = useNavigate();
   const handleLogOut = () => {
@@ -43,7 +43,11 @@ const Dashboard = () => {
         }}
       >
         <Modal>
-         {!deleteUser ? <ConfirmDeleteModal deleteUser={setDeleteUser} /> : <DeleteAccount />} 
+          {!deleteUser ? (
+            <ConfirmDeleteModal deleteUser={setDeleteUser} />
+          ) : (
+            <DeleteAccount />
+          )}
         </Modal>
         <Grid
           container
@@ -137,7 +141,7 @@ const Dashboard = () => {
                 variant='outlined'
                 backgroundColor='primary'
                 sx={{ width: 'fit-content', alignSelf: 'center', marginY: 5 }}
-                onClick={()=>dispatch(turnModalOn(true))}
+                onClick={() => dispatch(turnModalOn(true))}
               >
                 Delete Account
               </Button>

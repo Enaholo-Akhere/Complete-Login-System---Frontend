@@ -31,6 +31,10 @@ export const resetPassword = async (formData) => {
 
 //delete account
 export const deleteAccount = async (formData) => {
-  console.log(formData.email)
-  return await instance.delete(`${baseUrl}/users/deleteaccount`, formData)
-}
+  console.log(formData);
+  return await instance.delete(
+    `${baseUrl}/users/deleteaccount`,
+    { data: formData },
+    {}
+  );
+};

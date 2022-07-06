@@ -4,8 +4,11 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 import { useNavigate } from 'react-router-dom';
+import { turnModalOff } from '../redux/actionsCreators/modalTurnOnActions';
+import { useDispatch } from 'react-redux';
 
 const ProceedModal = () => {
+  const dispatch = useDispatch()
   const userEmail = JSON.parse(window.localStorage.getItem('userEmail'));
   console.log(userEmail);
   const navigate = useNavigate();
@@ -13,6 +16,7 @@ const ProceedModal = () => {
     navigate('/signin');
     window.localStorage.setItem('email', userEmail)
     window.localStorage.removeItem('userEmail')
+    dispatch(turnModalOff(false))
   };
   return (
     <>

@@ -11,16 +11,17 @@ export const deleteAccountAction = (
   navigate,
   setFieldError,
   setSubmitting,
-  setIsLoading
+  setIsLoading,
+  handleToastify
 ) => {
   const user = JSON.parse(window.localStorage.getItem('user'));
   return async (dispatch) => {
     dispatch(deleteAccountRequest());
-      setIsLoading(true);
+    setIsLoading(true);
     if (user.email !== formData.email) {
       dispatch(deleteAccountFailure('please enter your correct email'));
-      setFieldError('email', 'please enter your correct email')
-      setIsLoading(false)
+      setFieldError('email', 'please enter your correct email');
+      setIsLoading(false);
     } else {
       dispatch(deleteAccountRequest());
       setIsLoading(true);
@@ -38,11 +39,14 @@ export const deleteAccountAction = (
             }
           } else if (respData.status === 'SUCCESS') {
             const { message } = respData;
-            console.log(message);
-            dispatch(turnModalOff(false));
-            dispatch(deleteAccountSuccess(message));
+            handleToastify(message);
             setIsLoading(false);
-            navigate('/');
+            setTimeout(() => {
+              window.localStorage.removeItem('user');
+              dispatch(deleteAccountSuccess(message));
+              dispatch(turnModalOff(false));
+              navigate('/');
+            }, 3000);
           }
           setSubmitting(false);
         })
