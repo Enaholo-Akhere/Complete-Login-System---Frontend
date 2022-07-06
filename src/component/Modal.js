@@ -46,7 +46,7 @@ const Modal = ({ children }) => {
           >
             <CloseIcon
               onClick={() => dispatch(turnModalOff(false))}
-              sx={{ cursor: 'pointer', marginTop: -10, fontSize: 30}}
+              sx={{ cursor: 'pointer', marginTop: -7, fontSize: 30}}
             />
           </Box>
           {children}
