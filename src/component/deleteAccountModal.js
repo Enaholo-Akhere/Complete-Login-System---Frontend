@@ -67,10 +67,22 @@ const DeleteAccount = () => {
   });
 
   return (
-    <Box>
+    <Box
+      sx={{
+        width: {
+          xl: 'fit-content',
+          lg: 'fit-content',
+          md: '80vw',
+          sm: '80vw',
+          xs: '80vw',
+        },
+        margin: 'auto',
+        alignContent: 'center',
+      }}
+    >
       <ToastContainer
         position='top-right'
-        autoClose={5000}
+        autoClose={3000}
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick
@@ -97,7 +109,6 @@ const DeleteAccount = () => {
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'center',
-              maxWidth: 600,
               margin: 'auto',
             }}
           >
