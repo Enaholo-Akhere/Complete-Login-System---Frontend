@@ -4,9 +4,12 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 import { useNavigate } from 'react-router-dom';
+import { turnModalOff } from '../redux/actionsCreators/modalTurnOnActions';
+import { useDispatch } from 'react-redux';
 
 const PasswordChangedModal = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   return (
     <>
@@ -33,7 +36,10 @@ const PasswordChangedModal = () => {
         <Button
           variant='contained'
           endIcon={<ArrowRightAltIcon />}
-          onClick={() => navigate('/signin')}
+          onClick={() => {
+            navigate('/signin');
+            dispatch(turnModalOff(false));
+          }}
           sx={{
             marginTop: 3,
             fontSize: 20,
