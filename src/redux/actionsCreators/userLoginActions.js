@@ -5,8 +5,6 @@ import {
   loginFailed,
 } from '../actionTypes/actionTypes';
 
-
-
 export const userLogin = (
   formData,
   navigate,
@@ -32,9 +30,8 @@ export const userLogin = (
           } else if (message.includes('password')) {
             setFieldError('password', message);
             setIsLoading(false);
-          } else {
-            setFieldError('email', 'check your network settings');
-            setFieldError('password', 'check your network settings');
+          } else if (message.toLowerCase().includes('email')) {
+            setFieldError('email', message);
           }
         } else if (data.status === 'SUCCESS') {
           dispatch(loginSuccess(data));
