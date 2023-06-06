@@ -2,9 +2,12 @@ import axios from 'axios';
 
 //instance with development
 const instance = axios.create({
-  baseURL: 'http://localhost:3000',
+  baseURL: 'http://localhost:5000',
   withCredentials: true,
 });
+
+console.log('prod', process.env.REACT_APP_BASE_URL_PROD);
+console.log('dev', process.env.REACT_APP_BASE_URL_DEV);
 
 const baseUrl =
   process.env.NODE_ENV === 'production'
