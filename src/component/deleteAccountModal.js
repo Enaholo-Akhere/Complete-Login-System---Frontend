@@ -15,8 +15,7 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import PropagateLoader from 'react-spinners/PropagateLoader';
 import { deleteAccountAction } from '../redux/actionsCreators/deleteAccountActions';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from '../utils/toast-provider';
 
 const DeleteAccount = () => {
   const [loading, setIsLoading] = useState(false);
@@ -80,17 +79,6 @@ const DeleteAccount = () => {
         alignContent: 'center',
       }}
     >
-      <ToastContainer
-        position='top-right'
-        autoClose={3000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
       <form onSubmit={formik.handleSubmit}>
         <Grid
           container

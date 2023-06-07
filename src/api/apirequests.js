@@ -6,9 +6,6 @@ const instance = axios.create({
   withCredentials: true,
 });
 
-console.log('prod', process.env.REACT_APP_BASE_URL_PROD);
-console.log('dev', process.env.REACT_APP_BASE_URL_DEV);
-
 const baseUrl =
   process.env.NODE_ENV === 'production'
     ? process.env.REACT_APP_BASE_URL_PROD
@@ -34,10 +31,18 @@ export const resetPassword = async (formData) => {
 
 //delete account
 export const deleteAccount = async (formData) => {
-  console.log(formData);
   return await instance.delete(
     `${baseUrl}/users/deleteaccount`,
     { data: formData },
     {}
   );
+};
+
+//verify
+export const verifyAccount = async (id, uniqueString) => {
+  try {
+    return await instance.get(`${baseUrl}/users/verify/${id}/${uniqueString}`);
+  } catch (error) {
+    console.log('error from verify account', error);
+  }
 };

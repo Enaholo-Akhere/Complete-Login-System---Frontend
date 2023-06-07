@@ -1,3 +1,8 @@
 {
-  "cSpell.words": ["deleteaccount", "requestpasswordreset", "signin"]
+  "cSpell.words": [
+    "deleteaccount",
+    "forgotpassword",
+    "requestpasswordreset",
+    "signin"
+  ]
 }
