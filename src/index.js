@@ -4,6 +4,7 @@ import App from './App';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { grey } from '@mui/material/colors';
 import { Provider } from 'react-redux';
+import { ToasterProvider } from './utils/toast-provider';
 import store from './redux/store';
 import './index.css';
 
@@ -21,6 +22,7 @@ const theme = createTheme({
 });
 root.render(
   <React.StrictMode>
+    <ToasterProvider />
     <Provider store={store}>
       <ThemeProvider theme={theme}>
         <App />

@@ -7,29 +7,28 @@ import ForgotPassword from './views/forgotpassword';
 import ProtectedRouted from './component/ProtectedRoutes';
 import RedirectTo from './component/RedirectTo';
 import ResetPassword from './views/resetPassword';
+import Verified from './views/verified';
 const App = () => {
   return (
-    
-      <BrowserRouter>
-      
-        <Routes>
-          <Route path='/' element={<Home />} />
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/verified' element={<Verified />} />
 
-          <Route element={<ProtectedRouted />}>
-            <Route path='/dashboard' element={<Dashboard />} />
-          </Route>
-          <Route element={<RedirectTo />}>
-            <Route path='/signin' element={<Signin />} />
-            <Route path='/signup' element={<Signup />} />
-            <Route path='/forgotpassword' element={<ForgotPassword />} />
-            <Route
-              path='/resetpassword/:userId/:resetString'
-              element={<ResetPassword />}
-            />
-          </Route>
-        </Routes>
-      </BrowserRouter>
-    
+        <Route element={<ProtectedRouted />}>
+          <Route path='/dashboard' element={<Dashboard />} />
+        </Route>
+        <Route element={<RedirectTo />}>
+          <Route path='/signin' element={<Signin />} />
+          <Route path='/signup' element={<Signup />} />
+          <Route path='/forgotpassword' element={<ForgotPassword />} />
+          <Route
+            path='/resetpassword/:userId/:resetString'
+            element={<ResetPassword />}
+          />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 };
 
