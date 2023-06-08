@@ -1,44 +1,40 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { verifyAccount } from '../api/apirequests';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
-import CancelRoundedIcon from '@mui/icons-material/CancelRounded';
 import PropagateLoader from 'react-spinners/PropagateLoader';
 import KeyboardBackspaceRoundedIcon from '@mui/icons-material/KeyboardBackspaceRounded';
 import Link from '@mui/material/Link';
-
 import GppBadRoundedIcon from '@mui/icons-material/GppBadRounded';
-// const logo = require('../assets/profena.png');
 
 const Verified = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(false);
-  //   const params = useParams();
-  console.log('id, uniqueString', searchParams.get('id'));
-  console.log('id, uniqueString', searchParams.get('uniqueString'));
-  //   console.log('params', params);
+  const checkMultipleRendering = useRef(false);
 
   useEffect(() => {
+    if (checkMultipleRendering.current) return;
+    checkMultipleRendering.current = true;
     setLoading(true);
     const data = verifyAccount(
       searchParams.get('id'),
       searchParams.get('uniqueString')
     );
-
     data
       .then(({ data }) => {
         setMessage(data);
         console.log('success', data);
         setLoading(false);
+        setSearchParams({});
       })
       .catch((error) => {
         console.log('error', error);
         setLoading(false);
       });
-  }, []);
+  }, [message, searchParams, setLoading, setSearchParams]);
 
   return (
     <Box
@@ -68,6 +64,8 @@ const Verified = () => {
             position: 'absolute',
             bgcolor: 'rgba(134, 67, 31, 0.9)',
             borderRadius: 2,
+            width: { xs: '80%', sm: '70%', md: '50%' },
+            margin: 'auto',
           }}
         >
           <Box
@@ -75,8 +73,8 @@ const Verified = () => {
               display: 'flex',
               flexDirection: 'column',
               p: 2,
-              gap: 2,
               minHeight: 250,
+              gap: 3,
             }}
           >
             <Box sx={{ display: 'flex', justifyContent: 'flex-start' }}>
@@ -101,8 +99,14 @@ const Verified = () => {
             >
               <Box>
                 <Typography
-                  variant='h3'
-                  sx={{ color: 'white', textAlign: 'center' }}
+                  variant='p'
+                  sx={{
+                    color: 'white',
+                    textAlign: 'center',
+                    width: 'fit-content',
+                    fontSize: { xs: 30, sm: 40, md: 48 },
+                    fontWeight: 'light',
+                  }}
                 >
                   Email Verification
                 </Typography>
