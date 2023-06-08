@@ -22,11 +22,13 @@ const theme = createTheme({
 });
 root.render(
   <React.StrictMode>
-    <ToasterProvider />
-    <Provider store={store}>
-      <ThemeProvider theme={theme}>
-        <App />
-      </ThemeProvider>
-    </Provider>
+    <>
+      <ToasterProvider />
+      <Provider store={store}>
+        <ThemeProvider theme={theme}>
+          <App />
+        </ThemeProvider>
+      </Provider>
+    </>
   </React.StrictMode>
 );
