@@ -7,20 +7,13 @@ import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
 import PropagateLoader from 'react-spinners/PropagateLoader';
 import KeyboardBackspaceRoundedIcon from '@mui/icons-material/KeyboardBackspaceRounded';
 import Link from '@mui/material/Link';
-import axios from 'axios';
-
 import GppBadRoundedIcon from '@mui/icons-material/GppBadRounded';
-// const logo = require('../assets/profena.png');
 
 const Verified = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(false);
   const checkMultipleRendering = useRef(false);
-  //   const params = useParams();
-  console.log('id, uniqueString', searchParams.get('id'));
-  console.log('id, uniqueString', searchParams.get('uniqueString'));
-  //   console.log('params', params);
 
   useEffect(() => {
     if (checkMultipleRendering.current) return;
@@ -41,7 +34,7 @@ const Verified = () => {
         console.log('error', error);
         setLoading(false);
       });
-  }, []);
+  }, [message, searchParams, setLoading, setSearchParams]);
 
   return (
     <Box
