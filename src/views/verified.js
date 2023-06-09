@@ -104,7 +104,7 @@ const Verified = () => {
                     color: 'white',
                     textAlign: 'center',
                     width: 'fit-content',
-                    fontSize: { xs: 30, sm: 40, md: 48 },
+                    fontSize: { xs: 26, sm: 40, md: 48 },
                     fontWeight: 'light',
                   }}
                 >
